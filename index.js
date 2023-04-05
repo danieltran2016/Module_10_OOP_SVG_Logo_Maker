@@ -1,5 +1,7 @@
 const inquirer = require('inquirer'); //makes the program use inquirer -DT
 const fs = require('fs'); //allows progam to make and read files -DT
+const {Circle, Triangle, Square} = require("./lib/shapes.js");
+
 
 inquirer
   .prompt([
