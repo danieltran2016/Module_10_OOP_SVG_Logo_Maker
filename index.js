@@ -5,8 +5,14 @@ inquirer
   .prompt([
     {
       type: 'input', //user input type -DT
-      message: 'Please enter 3 characters', //text shown in the terminal -DT
+      message: 'Please enter up to 3 characters', //text shown in the terminal -DT
       name: 'text', //custom name chosen by me for orgranizational purposes -DT
+      validate: (text) => {
+        if(text.length <=3 ) { //checks if it is within 3 charcters-DT
+          return true;
+        }
+        return 'must be 3 or less characters'
+      }
     },
     {
       type: 'input',
