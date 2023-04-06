@@ -1,7 +1,6 @@
 const inquirer = require('inquirer'); //makes the program use inquirer -DT
 const fs = require('fs'); //allows progam to make and read files -DT
-const {Circle, Triangle, Square} = require("./lib/shapes.js");
-
+const makeShape = require('./lib/shapemaker.js');
 
 inquirer
   .prompt([
@@ -19,12 +18,12 @@ inquirer
     {
       type: 'input',
       message: 'What color would you like the text?',
-      name: 'text-color',
+      name: 'textColor',
     },
     {
       type: 'input',
       message: 'What color would you like the logo?',
-      name: 'logo-color',
+      name: 'logoColor',
     },
     {
         type: 'list', //this is a list option for users. -DT
@@ -33,3 +32,16 @@ inquirer
         choices: ['circle','square','triangle'], //This gives users the options to move the cursor and pick either one. 
       },   
   ])
+  
+.then(function(answer){
+//   const shape = answer.shape;
+//   const textColor = answer.textColor;
+//   const logoColor = answer.logoColor;
+//   const text = answer.text;
+// console.log('shape' + " "+ shape);
+// console.log('textcol' + " "+textColor);
+// console.log('logoColor' + " "+logoColor);
+// console.log('text' + " "+text);
+  fs.writeFile("./examples/logo.svg",makeShape(answer), (err) =>
+  err ? console.error(err) : console.log('your logo.svg is made!'))
+});
